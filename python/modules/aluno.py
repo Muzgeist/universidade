@@ -1,3 +1,5 @@
+from modules.mysql import MySQL
+
 class Aluno:
     def __init__(self, nome, email, cpf, telefone, endereco):
         self.nome = nome
@@ -7,7 +9,7 @@ class Aluno:
         self.endereco = endereco
         self.matricula = True
 
-    def cadastrar(self):
+    def cadastrar(self, db=MySQL()):
         query = f"""
             INSERT INTO alunos(
             nome,
@@ -23,7 +25,7 @@ class Aluno:
             '{self.endereco}'
         )
         """
-        return query
+        db.execute_query(query)
     def editar(self):
         pass
     
