@@ -22,10 +22,10 @@ class MySQL:
             self.connection.close()
             self.connection = None
 
-    def execute_query(self, query):
+    def execute_query(self, query, parameters):
         with self.connection.cursor() as cursor:
             try:
-                cursor.execute(query)
+                cursor.execute(query, parameters)
             except Exception as e:
                 self.connection.rollback()
                 print(f"Error on execute query: {e}")

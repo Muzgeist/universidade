@@ -1,3 +1,4 @@
+
 CREATE DATABASE universidade;
 
 use universidade;
