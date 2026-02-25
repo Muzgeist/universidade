@@ -29,6 +29,7 @@ class MySQL:
             except Exception as e:
                 self.connection.rollback()
                 print(f"Error on execute query: {e}")
+                raise e
             else:
                 if cursor.description:
                     return cursor.fetchall()
