@@ -7,9 +7,11 @@ banco = MySQL(
     '',
     'universidade'
 )
-# banco = MySQL()
+banco = MySQL()
 
 banco.connect()
+
+consulta = Aluno.listar(banco)
 
 aluno = Aluno(
     "Jose Maria",

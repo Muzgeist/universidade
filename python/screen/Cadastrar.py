@@ -90,7 +90,7 @@ class Cadastrar:
 
     def cadastrar(self):
 
-        if not self.Falidar_campos():
+        if not self.validar_campos():
             return
 
         aluno = Aluno(

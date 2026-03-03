@@ -13,3 +13,6 @@ CREATE TABLE alunos (
     matricula BOOLEAN DEFAULT True
 
 );
+
+SELECT id, nome,email,cpf,telefone,endereco,matricula
+FROM alunos;
