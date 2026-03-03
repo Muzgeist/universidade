@@ -74,3 +74,62 @@ Este é um projeto desktop, utilizando as tecnologias:
 - **Material icon theme**: tema para Colorir as Pastas.
 - **GIt lens**: Interface Grafica para o Versionamento git integrado ao VSCode 
 - **MySQL**: SGBD (sistema genrenciador de banco de dados). permite conectar o usuario com o servidor MySql, possibilitando criar base de dados, tabelas, incluir e modificar atributos e registros
+
+## build
+**dependencias**
+~~pip install pyinstaller~~
+```
+pip install -r requiriments.txt
+```
+**Congelar Dependencias:**
+```
+pip freeze > requiriments.txt
+```
+
+**Diretorio Raiz do projeto:** pasta python
+
+```
+cd python
+```
+```
+pyinstaller --onefile --windowed app.py
+```
+
+**O executavel estara em:** dist/app.exe
+
+## Diagrama de Sequência - **Cadastro**
+```mermaid
+sequenceDiagram 
+    participant UI as TelaCadastro 
+    participant Entidade as Aluno 
+    participant DB as MySQL 
+    participant Banco as MySQL Server 
+
+    UI ->> Entidade: cria Aluno(...) 
+    UI ->> DB: connect() 
+    UI ->> Entidade: cadastrar(DB) 
+    Entidade ->> DB: execute_query(INSERT) 
+    DB ->> Banco: Envia SQL 
+    Banco -->> DB: Confirmação 
+    DB -->> Entidade: lastrowid 
+    UI ->> DB: disconnect()
+```
+## Diagrama de Sequência - **Listagem**
+```mermaid
+sequenceDiagram
+    participant UI as TelaListagem
+    participant Entidade as Aluno
+    participant DB as MySQL
+    participant Banco as MySQL Server
+
+    UI ->> DB: connect()
+    UI ->> Entidade: listar(DB)
+    Entidade ->> DB: execute_query(SELECT)
+    DB ->> Banco: Envia SQL (SELECT)
+    Banco -->> DB: Retorna registros
+    DB -->> Entidade: lista de alunos
+    Entidade -->> UI: lista de alunos
+    UI ->> UI: preencher QTableWidget
+    UI ->> DB: disconnect()
+```
+
