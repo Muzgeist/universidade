@@ -1,7 +1,6 @@
 from modules.mysql import MySQL
 from modules.aluno import Aluno
 
-
 from PySide6.QtWidgets import (
     QWidget,
     QVBoxLayout,
@@ -10,6 +9,7 @@ from PySide6.QtWidgets import (
     QPushButton,
     QMessageBox
 )
+
 
 class Cadastrar:
     def __init__(self, app):
@@ -26,7 +26,6 @@ class Cadastrar:
     def configurar_janela(self):
         self.janela.setWindowTitle("Cadastrar Aluno")
 
-        # Redimensionamento dinâmico baseado na tela
         screen = self.app.primaryScreen()
         tamanho = screen.availableGeometry()
 
@@ -35,6 +34,48 @@ class Cadastrar:
 
         self.janela.resize(largura, altura)
         self.janela.setLayout(self.layout)
+
+        self.janela.setStyleSheet("""
+            QWidget {
+                background-color: #000000;
+                color: #dff6ff; /* azul quase branco */
+                font-size: 14px;
+            }
+
+            QLabel {
+                color: #00f0ff;
+                font-weight: bold;
+                margin-top: 8px;
+            }
+
+            QLineEdit {
+                background-color: #050505;
+                color: #dff6ff;
+                border: 2px solid #00f0ff;
+                padding: 6px;
+                border-radius: 6px;
+            }
+
+            QLineEdit:focus {
+                border: 2px solid #33f5ff;
+                background-color: #0a0a0a;
+            }
+
+            QPushButton {
+                background-color: #000000;
+                color: #00f0ff;
+                border: 2px solid #00f0ff;
+                padding: 10px;
+                font-size: 15px;
+                border-radius: 8px;
+                margin-top: 15px;
+            }
+
+            QPushButton:hover {
+                background-color: #00f0ff;
+                color: black;
+            }
+        """)
 
     def criar_componentes(self):
         componentes = {
@@ -126,5 +167,3 @@ class Cadastrar:
     def limpar_campos(self):
         for campo in self.campos.values():
             campo.clear()
-
-
